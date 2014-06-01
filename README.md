@@ -1,11 +1,11 @@
-#LiveViewLib
+# LiveViewLib
 
 A Library for controlling a Sony Ericsson LiveView smartwatch(es).
 
 Based on the work done by github.com/shirioko/LiveViewNet & github.com/prusnak/liveview
 The library uses the 32feet.NET nuget package for Bluetooth communications.
 
-##Usage
+## Usage
 
 To use the library create a LiveViewServer object, set a connectListener and call Start().
 
