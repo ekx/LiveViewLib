@@ -62,7 +62,7 @@ namespace LiveViewLib
                     LiveView liveView = new LiveView(client);
                     liveViews.Add(liveView);
 
-                    connectListener(liveView);
+                    if(connectListener != null) connectListener(liveView);
 
                     liveView.Start();
                 }

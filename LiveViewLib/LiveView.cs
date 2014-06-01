@@ -61,17 +61,10 @@ namespace LiveViewLib
 
         protected void OnConnected()
         {
-            try
+            this.Send(new GetCapsMessage());
+            while (this.client.Connected)
             {
-                this.Send(new GetCapsMessage());
-                while (this.client.Connected)
-                {
-                    this.Listen();
-                }
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
+                this.Listen();
             }
         }
 
