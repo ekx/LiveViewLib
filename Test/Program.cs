@@ -32,14 +32,25 @@ namespace Test
                     case "panel":
                         server.SendAll(new DisplayPanelMessage("Test", "Footer", GetPreview(), false));
                         break;
+                    case "statusbar":
+                        server.SendAll(new SetStatusbarMessage(1, 100, GetPreview()));
+                        break;
+
+                    case "getscreenmode":
+                        server.SendAll(new GetScreenmodeMessage());
+                        break;
+                    case "setscreenmode":
+                        server.SendAll(new SetScreenmodeMessage(0, Screenmode.BRIGHTNESS_MAX));
+                        break;
                     case "bitmap":
                         server.SendAll(new DisplayBitmapMessage(128, 128, GetImage()));
                         break;
+                    case "cleardisplay":
+                        server.SendAll(new ClearDisplayMessage());
+                        break;
+
                     case "text":
                         server.SendAll(new DisplayTextMessage("Text test"));
-                        break;
-                    case "statusbar":
-                        server.SendAll(new SetStatusbarMessage(1, 100, GetPreview()));
                         break;
                 }
             }

@@ -148,6 +148,7 @@ namespace LiveViewLib
                         break;
 
                     case LiveViewMessage.MSG_GETSCREENMODE_RESP:
+                        //EVENT
                         break;
                     case LiveViewMessage.MSG_SETSCREENMODE_ACK:
                         break;

@@ -60,6 +60,7 @@
   <ItemGroup>
     <Compile Include="LiveViewServer.cs" />
     <Compile Include="MessageTypes\Ack.cs" />
+    <Compile Include="MessageTypes\Screenmode.cs" />
     <Compile Include="MessageTypes\SetStatusbar.cs" />
     <Compile Include="MessageTypes\DisplayText.cs" />
     <Compile Include="MessageTypes\DisplayPanel.cs" />
@@ -72,7 +73,6 @@
     <Compile Include="LiveView.cs" />
     <Compile Include="LiveViewItem.cs" />
     <Compile Include="LiveViewMessage.cs" />
-    <Compile Include="LVConstants.cs" />
     <Compile Include="MessageTypes\GetTime.cs" />
     <Compile Include="MessageTypes\Navigation.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

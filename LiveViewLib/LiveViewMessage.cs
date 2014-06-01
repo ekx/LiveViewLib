@@ -157,13 +157,16 @@ namespace LiveViewLib
                         break;
 
                     case LiveViewMessage.MSG_GETSCREENMODE_RESP:
+                        messages.Add(new GetScreenmodeResponse(payload));
                         break;
                     case LiveViewMessage.MSG_SETSCREENMODE_ACK:
+                        messages.Add(new SetScreenmodeAck(payload));
                         break;
                     case LiveViewMessage.MSG_DISPLAYBITMAP_ACK:
                         messages.Add(new DisplayBitmapAck(payload));
                         break;
                     case LiveViewMessage.MSG_CLEARDISPLAY_ACK:
+                        messages.Add(new ClearDisplayAck(payload));
                         break;
 
                     case LiveViewMessage.MSG_DISPLAYTEXT_ACK:
