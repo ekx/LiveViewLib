@@ -47,7 +47,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="InTheHand.Net.Personal">
-      <HintPath>..\packages\32feet.NET.3.5.0.0\lib\net\InTheHand.Net.Personal.dll</HintPath>
+      <HintPath>..\..\BachelorThesis\packages\32feet.NET.3.5.0.0\lib\net\InTheHand.Net.Personal.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -60,6 +60,7 @@
   <ItemGroup>
     <Compile Include="LiveViewServer.cs" />
     <Compile Include="MessageTypes\Ack.cs" />
+    <Compile Include="MessageTypes\ClearDisplay.cs" />
     <Compile Include="MessageTypes\Screenmode.cs" />
     <Compile Include="MessageTypes\SetStatusbar.cs" />
     <Compile Include="MessageTypes\DisplayText.cs" />
@@ -79,9 +80,6 @@
     <Compile Include="MessageTypes\SetMenuSettings.cs" />
     <Compile Include="MessageTypes\SetMenuSize.cs" />
     <Compile Include="MessageTypes\SetVibrate.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.0">
@@ -104,6 +102,9 @@
       <ProductName>Windows Installer 3.1</ProductName>
       <Install>true</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
