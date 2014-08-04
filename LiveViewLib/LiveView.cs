@@ -70,8 +70,20 @@ namespace LiveViewLib
 
         public void Send(LiveViewMessage message)
         {
-            Console.WriteLine("--> Sending message:\n" + message.ToString() + "\n");
-            this.client.GetStream().Write(message.ToByteArray(), 0, message.ToByteArray().Length);
+            if (client.Connected)
+            {
+                Console.WriteLine("--> Sending message:\n" + message.ToString() + "\n");
+
+                try
+                {
+                    this.client.GetStream().Write(message.ToByteArray(), 0, message.ToByteArray().Length);
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e.StackTrace);
+                }
+            }
+
         }
 
         public BluetoothAddress GetAddress()
