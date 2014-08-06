@@ -6,18 +6,9 @@ using System.Threading.Tasks;
 
 namespace LiveViewLib
 {
-    public class MenuItem : LiveViewItem
-    {
-        public MenuItem(bool isAlert, ushort unreadCount, string text, byte[] bitmap)
-        {
-            this.type = MENU_ITEM;
-            this.isAlert = isAlert;
-            this.unreadCount = unreadCount;
-            this.text = text;
-            this.bitmap = bitmap;
-        }
-    }
-
+    /// <summary>
+    /// Base class containing attributes common to all LiveViewItems.
+    /// </summary>
     public class LiveViewItem
     {
         public const int MENU_ITEM = 1;
@@ -38,6 +29,24 @@ namespace LiveViewLib
         public bool alertUser;
     }
 
+    /// <summary>
+    /// Class that represents a MenuItem.
+    /// </summary>
+    public class MenuItem : LiveViewItem
+    {
+        public MenuItem(bool isAlert, ushort unreadCount, string text, byte[] bitmap)
+        {
+            this.type = MENU_ITEM;
+            this.isAlert = isAlert;
+            this.unreadCount = unreadCount;
+            this.text = text;
+            this.bitmap = bitmap;
+        }
+    }
+
+    /// <summary>
+    /// Class that represents a AlertResponse.
+    /// </summary>
     public class AlertResponse : LiveViewItem
     {
         public AlertResponse(int totalCount, ushort unreadCount, int alertIndex, string timestampText, string headerText, string bodyText, byte[] bitmap)
@@ -53,6 +62,9 @@ namespace LiveViewLib
         }
     }
 
+    /// <summary>
+    /// Class that represents a DisplayPanel.
+    /// </summary>
     public class DisplayPanel : LiveViewItem
     {
         public DisplayPanel(string topText, string bottomText, byte[] bitmap, bool alertUser)

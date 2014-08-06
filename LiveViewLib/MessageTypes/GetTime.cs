@@ -36,6 +36,12 @@ namespace LiveViewLib.MessageTypes
             this.use24h = use24h;
         }
 
+        public static long GetLocalTime()
+        {
+            TimeSpan span = (DateTime.Now - new DateTime(1970, 1, 1, 0, 0, 0, 0));
+            return (long)Math.Round(span.TotalSeconds);
+        }
+
         override public byte[] ToByteArray()
         {
             List<byte> payload = new List<byte>();

@@ -12,6 +12,9 @@ using InTheHand.Net;
 
 namespace LiveViewLib
 {
+    /// <summary>
+    /// Represents a single LiveView and manages its state.
+    /// </summary>
     public class LiveView
     {
         public delegate void DeviceStatusListener(LiveView liveView, DeviceStatusMessage message);
@@ -37,13 +40,20 @@ namespace LiveViewLib
             this.address = client.RemoteEndPoint.Address;
         }
 
+        /// <summary>
+        /// Called right after the LiveView connects to the computer.
+        /// </summary>
         public void Start()
         {
-            this.listenThread = new Thread(new ThreadStart(OnConnected));
+            this.listenThread = new Thread(new ThreadStart(ConnectionLoop));
             this.listenThread.IsBackground = true;
             this.listenThread.Start();
         }
 
+        /// <summary>
+        /// Called when a LiveView connects that was already connect at one point.
+        /// </summary>
+        /// <param name="client">BluetoothClient of the new connection.</param>
         public void Reconnect(BluetoothClient client)
         {
             if (!client.RemoteEndPoint.Address.Equals(GetAddress()))
@@ -54,12 +64,15 @@ namespace LiveViewLib
 
             this.client = client;
 
-            this.listenThread = new Thread(new ThreadStart(OnConnected));
+            this.listenThread = new Thread(new ThreadStart(ConnectionLoop));
             this.listenThread.IsBackground = true;
             this.listenThread.Start();
         }
 
-        protected void OnConnected()
+        /// <summary>
+        /// Loop that gets executed in a separate thread and continually checks for new data.
+        /// </summary>
+        protected void ConnectionLoop()
         {
             this.Send(new GetCapsMessage());
             while (this.client.Connected)
@@ -68,6 +81,10 @@ namespace LiveViewLib
             }
         }
 
+        /// <summary>
+        /// Method used to send messages to the LiveView.
+        /// </summary>
+        /// <param name="message">Message to send to the LiveView.</param>
         public void Send(LiveViewMessage message)
         {
             if (client.Connected)
@@ -86,22 +103,27 @@ namespace LiveViewLib
 
         }
 
+        /// <summary>
+        /// Returns the BluetoothAddress associated with the LiveView.
+        /// </summary>
+        /// <returns>The requested BluetoothAddress.</returns>
         public BluetoothAddress GetAddress()
         {
             return address;
         }
 
+        /// <summary>
+        /// Sets the MenuItems that are displayed on the LiveView.
+        /// </summary>
+        /// <param name="items">MenuItems to display.</param>
         public void SetMenuItems(MenuItem[] items)
         {
             this.MenuItems = items;
         }
 
-        private long GetLocalTime()
-        {
-            TimeSpan span = (DateTime.Now - new DateTime(1970, 1, 1, 0, 0, 0, 0));
-            return (long) Math.Round(span.TotalSeconds);
-        }
-
+        /// <summary>
+        /// Checks for new messages from the LiveView and responds accordingly.
+        /// </summary>
         protected void Listen()
         {
             if (client.Available == 0)
@@ -138,7 +160,7 @@ namespace LiveViewLib
                         this.Send(new GetMenuItemResponse(index, item.isAlert, item.unreadCount, item.text, item.bitmap));
                         break;
                     case LiveViewMessage.MSG_GETTIME:
-                        Send(new GetTimeResponse(GetLocalTime(), Use24HourClock));
+                        Send(new GetTimeResponse(GetTimeResponse.GetLocalTime(), Use24HourClock));
                         break;
                     case LiveViewMessage.MSG_DEVICESTATUS:
                         Send(new DeviceStatusAck());

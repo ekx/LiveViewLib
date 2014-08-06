@@ -6,6 +6,9 @@ using LiveViewLib.MessageTypes;
 
 namespace LiveViewLib
 {
+    /// <summary>
+    /// Base class containing attributes common to all LiveViewMessages.
+    /// </summary>
     abstract public class LiveViewMessage
     {
         public const byte RESULT_OK = 0;
@@ -73,6 +76,11 @@ namespace LiveViewLib
 
         abstract public byte[] ToByteArray();
         
+        /// <summary>
+        /// Helper function that adds the common message header to a byte array.
+        /// </summary>
+        /// <param name="data">Data which to prepend with header.</param>
+        /// <returns>Modified data with header.</returns>
         protected byte[] AddHeader(byte[] data)
         {
             List<byte> output = new List<byte>();
@@ -83,6 +91,11 @@ namespace LiveViewLib
             return output.ToArray();
         }
 
+        /// <summary>
+        /// Helper function that converts a ushort to 2 bytes.
+        /// </summary>
+        /// <param name="number">ushort to convert.</param>
+        /// <returns>Resulting bytes.</returns>
         protected static byte[] ShortToBytes(ushort number)
         {
             byte[] result = BitConverter.GetBytes(number);
@@ -90,11 +103,22 @@ namespace LiveViewLib
             return result;
         }
 
+        /// <summary>
+        /// Helper function that converts 2 bytes to ushort.
+        /// </summary>
+        /// <param name="a">High byte.</param>
+        /// <param name="b">Low byte.</param>
+        /// <returns>Resulting ushort.</returns>
         protected static ushort BytesToShort(byte a, byte b)
         {
             return BitConverter.ToUInt16(new byte[] {b, a}, 0);
         }
 
+        /// <summary>
+        /// Helper function that converts a long to 4 bytes.
+        /// </summary>
+        /// <param name="number">long to convert.</param>
+        /// <returns>Resulting bytes.</returns>
         protected static byte[] LongToBytes(long number)
         {
             byte[] result = BitConverter.GetBytes(UInt32.Parse(number.ToString()));
@@ -102,12 +126,24 @@ namespace LiveViewLib
             return result;
         }
 
+        /// <summary>
+        /// Helper function that converts RGB888 to RGB565.
+        /// </summary>
+        /// <param name="red">Red value.</param>
+        /// <param name="green">Green value.</param>
+        /// <param name="blue">Blue value.</param>
+        /// <returns>RGB565 result.</returns>
         protected static ushort ToRGB565(byte red, byte green, byte blue)
         {
             int rgb32 = (blue << 0) | (green << 8) | (red << 16);
             return (ushort)((rgb32 >> 8 & 0xf800) | (rgb32 >> 5 & 0x07e0) | (rgb32 >> 3 & 0x001f));
         }
 
+        /// <summary>
+        /// Method that decodes data recieved from a LiveView and constructs the appropriate LiveViewMessage.
+        /// </summary>
+        /// <param name="data">Recieved data.</param>
+        /// <returns>Constructed LiveViewMessage.</returns>
         public static LiveViewMessage[] Decode(byte[] data)
         {
             List<LiveViewMessage> messages = new List<LiveViewMessage>();
@@ -180,6 +216,14 @@ namespace LiveViewLib
             return messages.ToArray();
         }
 
+        /// <summary>
+        /// Method that splits recieved data into separate messages.
+        /// </summary>
+        /// <param name="data">Recieved data.</param>
+        /// <param name="index">Current position in recieved data.</param>
+        /// <param name="messageId">Message id of current message.</param>
+        /// <param name="payload">Payload of current message.</param>
+        /// <returns>Return new position in recieved data.</returns>
         private static int SplitMessages(byte[] data, int index, out byte messageId, out byte[] payload)
         {
             messageId = data[index + 0];
@@ -201,6 +245,10 @@ namespace LiveViewLib
             return index + messageLength;
         }
 
+        /// <summary>
+        /// Shared toString method that all LiveViewMessages use.
+        /// </summary>
+        /// <returns>String describing the LiveViewMessage.</returns>
         override public string ToString()
         {
             return "// " + base.ToString() + "\n// " + BitConverter.ToString(ToByteArray());

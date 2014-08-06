@@ -8,6 +8,10 @@ using InTheHand.Net.Bluetooth;
 
 namespace LiveViewLib
 {
+    /// <summary>
+    /// Outward facing class that represents the server the LiveViews connect to. 
+    /// Manages connections and LiveViews.
+    /// </summary>
     public class LiveViewServer
     {
         public const string CLIENT_SOFTWARE_VERSION = "0.0.3";
@@ -25,18 +29,24 @@ namespace LiveViewLib
             liveViews = new List<LiveView>();
         }
 
+        /// <summary>
+        /// Called to start the server.
+        /// </summary>
         public void Start()
         {
             this.listener = new BluetoothListener(BluetoothService.SerialPort);
             this.listener.ServiceClass = ServiceClass.Information;
             this.listener.ServiceName = "LiveView";
 
-            this.connectThread = new Thread(new ThreadStart(acceptClient));
+            this.connectThread = new Thread(new ThreadStart(AcceptClientLoop));
             this.connectThread.IsBackground = true;
             this.connectThread.Start();
         }
 
-        protected void acceptClient()
+        /// <summary>
+        /// Loop that gets executed in separate thread and listens for LiveViews wanting to connect.
+        /// </summary>
+        protected void AcceptClientLoop()
         {
             this.listener.Start();
             while (true)
@@ -69,11 +79,19 @@ namespace LiveViewLib
             }
         }
 
+        /// <summary>
+        /// Returns all LiveViews that were connected to this server.
+        /// </summary>
+        /// <returns>All LiveViews.</returns>
         public List<LiveView> GetLiveViews()
         {
             return liveViews;
         }
 
+        /// <summary>
+        /// Helper function that sends a message to all connect LiveViews.
+        /// </summary>
+        /// <param name="message">Message to send.</param>
         public void SendAll(LiveViewMessage message)
         {
             foreach (LiveView liveView in liveViews)
