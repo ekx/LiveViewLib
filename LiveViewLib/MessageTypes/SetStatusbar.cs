@@ -5,6 +5,9 @@ using System.Text;
 
 namespace LiveViewLib.MessageTypes
 {
+    /// <summary>
+    /// This message is used to transmit a statusbar message to the LiveView.
+    /// </summary>
     public class SetStatusbarMessage : LiveViewMessage
     {
         public byte menuItemId;
@@ -33,6 +36,9 @@ namespace LiveViewLib.MessageTypes
         }
     }
 
+    /// <summary>
+    /// Specific acknowledgement message. Response to SetStatusbarMessage.
+    /// </summary>
     public class SetStatusbarAck : LiveViewMessage
     {
         public byte unknown;

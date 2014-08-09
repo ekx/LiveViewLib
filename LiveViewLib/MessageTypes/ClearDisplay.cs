@@ -5,6 +5,9 @@ using System.Text;
 
 namespace LiveViewLib.MessageTypes
 {
+    /// <summary>
+    /// This message instructs the LiveView to clear the screen. Only works if menu size is 0.
+    /// </summary>
     public class ClearDisplayMessage : LiveViewMessage
     {
         public ClearDisplayMessage()
@@ -19,6 +22,9 @@ namespace LiveViewLib.MessageTypes
         }
     }
 
+    /// <summary>
+    /// Specific acknowledgement message. Response to ClearDisplayMessage.
+    /// </summary>
     public class ClearDisplayAck : LiveViewMessage
     {
         public byte unknown;

@@ -5,6 +5,9 @@ using System.Text;
 
 namespace LiveViewLib.MessageTypes
 {
+    /// <summary>
+    /// This message is used by the LiveView to request all the MenuItems it should display.
+    /// </summary>
     public class GetMenuItemsMessage : LiveViewMessage
     {
         public byte unknown;
@@ -24,6 +27,9 @@ namespace LiveViewLib.MessageTypes
         }
     }
 
+    /// <summary>
+    /// This message is used by the LiveView to request a specific MenuItem it should display.
+    /// </summary>
     public class GetMenuItemMessage : LiveViewMessage
     {
         public byte index;
@@ -43,6 +49,9 @@ namespace LiveViewLib.MessageTypes
         }
     }
 
+    /// <summary>
+    /// The response to GetMenuItemsMessage and GetMenuItemMessage. Contains the data the LiveView needs to display a single MenuItem.
+    /// </summary>
     public class GetMenuItemResponse : LiveViewMessage
     {
         public byte index;

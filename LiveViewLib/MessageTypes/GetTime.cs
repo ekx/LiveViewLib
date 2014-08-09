@@ -5,6 +5,9 @@ using System.Text;
 
 namespace LiveViewLib.MessageTypes
 {
+    /// <summary>
+    /// This message is used by the LiveView to request the current time.
+    /// </summary>
     public class GetTimeMessage : LiveViewMessage
     {
         public byte unknown;
@@ -24,6 +27,9 @@ namespace LiveViewLib.MessageTypes
         }
     }
 
+    /// <summary>
+    /// The response to GetTimeMessage. Contains the current time.
+    /// </summary>
     public class GetTimeResponse : LiveViewMessage
     {
         public long time;

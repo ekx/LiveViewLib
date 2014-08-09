@@ -5,6 +5,9 @@ using System.Text;
 
 namespace LiveViewLib.MessageTypes
 {
+    /// <summary>
+    /// This message is used to display panels on the LiveView. A panel contains a 36 by 36 image, a header text and a footer text.
+    /// </summary>
     public class DisplayPanelMessage : LiveViewMessage
     {
         public string headerText;
@@ -38,6 +41,9 @@ namespace LiveViewLib.MessageTypes
         }
     }
 
+    /// <summary>
+    /// Specific acknowledgement message. Response to DisplayPanelMessage.
+    /// </summary>
     public class DisplayPanelAck : LiveViewMessage
     {
         public byte unknown;

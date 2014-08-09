@@ -5,6 +5,9 @@ using System.Text;
 
 namespace LiveViewLib.MessageTypes
 {
+    /// <summary>
+    /// This message is used to initialize a connection to a LiveView. It requests the LiveView to broadcast its DeviceCapabilities.
+    /// </summary>
     public class GetCapsMessage : LiveViewMessage
     {
         public GetCapsMessage()
@@ -22,6 +25,9 @@ namespace LiveViewLib.MessageTypes
         }
     }
 
+    /// <summary>
+    /// The response to GetCapsMessage. Contains the LiveViews DeviceCapabilities.
+    /// </summary>
     public class GetCapsResponse : LiveViewMessage
     {
         public byte width;

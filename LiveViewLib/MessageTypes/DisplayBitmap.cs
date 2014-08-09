@@ -5,6 +5,9 @@ using System.Text;
 
 namespace LiveViewLib.MessageTypes
 {
+    /// <summary>
+    /// This message is used to display images on the LiveView. Only works if menu size is 0.
+    /// </summary>
     public class DisplayBitmapMessage : LiveViewMessage
     {
         public byte width;
@@ -31,6 +34,9 @@ namespace LiveViewLib.MessageTypes
         }
     }
 
+    /// <summary>
+    /// Specific acknowledgement message. Response to DisplayBitmapMessage.
+    /// </summary>
     public class DisplayBitmapAck : LiveViewMessage
     {
         public byte unknown;

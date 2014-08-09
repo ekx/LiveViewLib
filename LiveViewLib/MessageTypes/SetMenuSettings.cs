@@ -5,6 +5,9 @@ using System.Text;
 
 namespace LiveViewLib.MessageTypes
 {
+    /// <summary>
+    /// This message is used to transmit menu setting to the LiveView.
+    /// </summary>
     public class SetMenuSettingsMessage : LiveViewMessage
     {
         public byte vibrationTime;
@@ -28,6 +31,9 @@ namespace LiveViewLib.MessageTypes
         }
     }
 
+    /// <summary>
+    /// Specific acknowledgement message. Response to SetMenuSettingsMessage.
+    /// </summary>
     public class SetMenuSettingsAck : LiveViewMessage
     {
         public byte unknown;

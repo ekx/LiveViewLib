@@ -5,6 +5,9 @@ using System.Text;
 
 namespace LiveViewLib.MessageTypes
 {
+    /// <summary>
+    /// This message is used to display a text on the LiveView.
+    /// </summary>
     public class DisplayTextMessage : LiveViewMessage
     {
         public string text;
@@ -25,6 +28,9 @@ namespace LiveViewLib.MessageTypes
         }
     }
 
+    /// <summary>
+    /// Specific acknowledgement message. Response to DisplayTextMessage.
+    /// </summary>
     public class DisplayTextAck : LiveViewMessage
     {
         public byte unknown;

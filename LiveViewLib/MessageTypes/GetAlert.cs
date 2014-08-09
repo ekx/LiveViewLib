@@ -5,6 +5,9 @@ using System.Text;
 
 namespace LiveViewLib.MessageTypes
 {
+    /// <summary>
+    /// Helper class containing constants pertaining to the GetAlert messages.
+    /// </summary>
     public class Alert
     {
         public const byte ACTION_CURRENT = 0;
@@ -14,6 +17,9 @@ namespace LiveViewLib.MessageTypes
         public const byte ACTION_PREV = 4;
     }
 
+    /// <summary>
+    /// This message is sent by the LiveView if the user selected a MenuItem.
+    /// </summary>
     public class GetAlertMessage : LiveViewMessage
     {
         public byte menuItemId;
@@ -48,6 +54,9 @@ namespace LiveViewLib.MessageTypes
         }
     }
 
+    /// <summary>
+    /// The response to GetAlertMessage. Tells the LiveView what information to display in the alert.
+    /// </summary>
     public class GetAlertResponse : LiveViewMessage
     {
         public ushort totalCount;

@@ -5,6 +5,9 @@ using System.Text;
 
 namespace LiveViewLib.MessageTypes
 {
+    /// <summary>
+    /// Helper class containing constants pertaining to the DeviceStatus messages.
+    /// </summary>
     public class DeviceStatus
     {
         public const byte OFF = 0;
@@ -12,6 +15,9 @@ namespace LiveViewLib.MessageTypes
         public const byte MENU = 2;
     }
 
+    /// <summary>
+    /// This message is used by the LiveView to tell the server what state it is in.
+    /// </summary>
     public class DeviceStatusMessage : LiveViewMessage
     {
         public byte deviceStatus;
@@ -31,6 +37,9 @@ namespace LiveViewLib.MessageTypes
         }
     }
 
+    /// <summary>
+    /// Specific acknowledgement message. Response to DeviceStatusMessage.
+    /// </summary>
     public class DeviceStatusAck : LiveViewMessage
     {
         public DeviceStatusAck()

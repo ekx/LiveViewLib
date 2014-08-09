@@ -5,6 +5,9 @@ using System.Text;
 
 namespace LiveViewLib.MessageTypes
 {
+    /// <summary>
+    /// Generic acknowledgement message.
+    /// </summary>
     public class AckMessage : LiveViewMessage
     {
         byte ackId;

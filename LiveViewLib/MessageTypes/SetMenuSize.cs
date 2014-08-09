@@ -5,6 +5,9 @@ using System.Text;
 
 namespace LiveViewLib.MessageTypes
 {
+    /// <summary>
+    /// This message is used to set the number of MenuItems the LiveView should display.
+    /// </summary>
     public class SetMenuSizeMessage : LiveViewMessage
     {
         public byte menuSize;
@@ -24,6 +27,9 @@ namespace LiveViewLib.MessageTypes
         }
     }
 
+    /// <summary>
+    /// Specific acknowledgement message. Response to SetMenuSizeMessage.
+    /// </summary>
     public class SetMenuSizeAck : LiveViewMessage
     {
         public byte unknown;

@@ -5,6 +5,9 @@ using System.Text;
 
 namespace LiveViewLib.MessageTypes
 {
+    /// <summary>
+    /// This message is used to turn the LiveView LED on and set its color.
+    /// </summary>
     public class SetLEDMessage : LiveViewMessage
     {
         public byte red;
@@ -34,6 +37,9 @@ namespace LiveViewLib.MessageTypes
         }
     }
 
+    /// <summary>
+    /// Specific acknowledgement message. Response to SetLEDMessage.
+    /// </summary>
     public class SetLEDAck : LiveViewMessage
     {
         public byte unknown;

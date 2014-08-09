@@ -5,6 +5,9 @@ using System.Text;
 
 namespace LiveViewLib.MessageTypes
 {
+    /// <summary>
+    /// Helper class containing constants pertaining to the Navigation messages.
+    /// </summary>
     public class Navigation
     {
         public const byte ACTION_PRESS = 0;
@@ -19,6 +22,9 @@ namespace LiveViewLib.MessageTypes
         public const byte TYPE_MENUSELECT = 5;
     }
 
+    /// <summary>
+    /// This message is used by the LiveView to inform the server of user inputs.
+    /// </summary>
     public class NavigationMessage : LiveViewMessage
     {
         public byte navAction;
@@ -49,6 +55,9 @@ namespace LiveViewLib.MessageTypes
         }
     }
 
+    /// <summary>
+    /// This is the response to NavigationMessage. Contains instructions on how to handle the input.
+    /// </summary>
     public class NavigationResponse : LiveViewMessage
     {
         public byte code;

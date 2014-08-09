@@ -5,6 +5,9 @@ using System.Text;
 
 namespace LiveViewLib.MessageTypes
 {
+    /// <summary>
+    /// This message is used to activate the vibrate motor on the LiveView.
+    /// </summary>
     public class SetVibrateMessage : LiveViewMessage
     {
         public ushort delay;
@@ -27,6 +30,9 @@ namespace LiveViewLib.MessageTypes
         }
     }
 
+    /// <summary>
+    /// Specific acknowledgement message. Response to SetVibrateMessage.
+    /// </summary>
     public class SetVibrateAck : LiveViewMessage
     {
         public byte unknown;

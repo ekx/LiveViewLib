@@ -5,6 +5,9 @@ using System.Text;
 
 namespace LiveViewLib.MessageTypes
 {
+    /// <summary>
+    /// Helper class containing constants pertaining to the GetScreenmode messages.
+    /// </summary>
     public class Screenmode
     {
         public const byte BRIGHTNESS_OFF = 48;
@@ -12,6 +15,9 @@ namespace LiveViewLib.MessageTypes
         public const byte BRIGHTNESS_MAX = 50;
     }
 
+    /// <summary>
+    /// This message is used to request the LiveView screenmode. Only works if menu size is 0.
+    /// </summary>
     public class GetScreenmodeMessage : LiveViewMessage
     {
         public GetScreenmodeMessage()
@@ -26,6 +32,9 @@ namespace LiveViewLib.MessageTypes
         }
     }
 
+    /// <summary>
+    /// The response to GetScreenmodeMessage. Contains the LiveViews screenmode.
+    /// </summary>
     public class GetScreenmodeResponse : LiveViewMessage
     {
         public byte auto;
@@ -46,6 +55,9 @@ namespace LiveViewLib.MessageTypes
         }
     }
 
+    /// <summary>
+    /// This message is used to set the LiveView screenmode. Only works if menu size is 0.
+    /// </summary>
     public class SetScreenmodeMessage : LiveViewMessage
     {
         public byte auto;
@@ -66,6 +78,9 @@ namespace LiveViewLib.MessageTypes
         }
     }
 
+    /// <summary>
+    /// Specific acknowledgement message. Response to SetScreenmodeMessage.
+    /// </summary>
     public class SetScreenmodeAck : LiveViewMessage
     {
         public byte unknown;
